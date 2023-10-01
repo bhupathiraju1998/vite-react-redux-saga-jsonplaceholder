@@ -40,3 +40,19 @@
 .read-the-docs {
   color: #888;
 }
+
+.main-container{
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  
+}
+
+.paragraph{
+  text-align: left;
+}
+
+.input-field{
+  text-align: left;
+}

@@ -8,6 +8,8 @@ const intialState = {
 const UserReducer = (state= intialState, action) => {
   switch (action.type) {
     case ActionConstants.FETCH_USERS_START:
+      console.log("entered1")
+
       return {
         ...state,
         isLoading: true,

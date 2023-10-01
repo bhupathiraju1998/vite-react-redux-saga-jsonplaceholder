@@ -8,7 +8,7 @@ export function* fetchUsersStartAsync(){
         const data = yield axios('https://jsonplaceholder.typicode.com/users').then((res)=>res.data)
         console.log("data",data)
         yield put(fetchUsersSuccess(data))
-        console.log("entered")
+        console.log("entered2")
         
     } catch (error) {
         yield put(fetchUsersFailure(error))
