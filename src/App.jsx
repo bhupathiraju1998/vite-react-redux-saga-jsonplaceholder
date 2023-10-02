@@ -23,6 +23,13 @@ function App({ usersList, fetchUsers ,updateTitle,deleteTitle,postTitle}) {
     setModalisOpenDelete(true);
     setDeleteUser(user);
   };
+
+  
+
+  const deleteTitleClosePopUp = (deleteUser) => {
+    setModalisOpenDelete(false)
+    deleteTitle(deleteUser)
+  }
  console.log("editname",usersList)
   return (
     <div >
@@ -117,7 +124,7 @@ function App({ usersList, fetchUsers ,updateTitle,deleteTitle,postTitle}) {
                     >
                       Cancel
                     </button>
-                    <button className="modal-button" type="button" onClick={()=>deleteTitle(deleteUser)}>Delete</button>
+                    <button className="modal-button" type="button" onClick={()=>deleteTitleClosePopUp(deleteUser)}>Delete</button>
                   </div>
                 </ReactModal>
               </li>
