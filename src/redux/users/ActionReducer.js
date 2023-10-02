@@ -5,33 +5,89 @@ const intialState = {
   usersList: [],
   error: null,
 };
-const UserReducer = (state= intialState, action) => {
+const UserReducer = (state = intialState, action) => {
   switch (action.type) {
     case ActionConstants.FETCH_USERS_START:
-      console.log("entered1")
+      
 
       return {
         ...state,
         isLoading: true,
       };
     case ActionConstants.FETCH_USERS_SUCCESS:
-    return {
+      return {
         ...state,
         isLoading: false,
-        usersList:action.payload
-    };
+        usersList: action.payload,
+      };
     case ActionConstants.FETCH_USERS_FAILURE:
       return {
         ...state,
         isLoading: false,
-        error:action.payload
+        error: action.payload,
       };
-    case ActionConstants.CLEAR_USER_MESSAGES:
-        return{
-            ...state,
-            error:null,
+    case ActionConstants.POST_TITLE_START:
+      return {
+        ...state,
+        isLoading: true,
+      };
 
-        }
+    case ActionConstants.POST_TITLE_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        usersList: usersList.push(action.payload),
+      };
+    case ActionConstants.POST_TITLE_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
+    case ActionConstants.UPDATE_TITLE_START:
+      
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case ActionConstants.UPDATE_TITLE_SUCCESS:
+      const updatedUsersList = state.usersList
+      const item = state.usersList.find((eachItem) =>  eachItem.id === action.payload.id);
+      updatedUsersList[state.usersList.indexOf(item)] = action.payload
+      return {
+        ...state,
+        isLoading: false,
+        usersList:updatedUsersList
+      };
+    case ActionConstants.UPDATE_TITLE_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
+
+    case ActionConstants.DELETE_TITLE_START:
+      console.log("hitted")
+      return{
+        ...state,isLoading:true,
+      };
+    case ActionConstants.DELETE_TITLE_SUCCESS:
+      console.log("entered success")
+      const titleListFromState = state.usersList
+      const filteredList = titleListFromState.filter((eachTitle)=> eachTitle.id !== action.payload)
+      console.log("filtered list",filteredList)
+      return{
+        ...state,isLoading:false,usersList:filteredList
+      };
+    case ActionConstants.DELETE_TITLE_FAILURE:
+      return {
+        ...state,isLoading:false,error:action.payload,
+      }
+    case ActionConstants.CLEAR_USER_MESSAGES:
+      return {
+        ...state,
+        error: null,
+      };
     default:
       return state;
   }

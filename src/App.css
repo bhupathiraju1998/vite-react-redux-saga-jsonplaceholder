@@ -45,14 +45,43 @@
   list-style-type: none;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-around;
   
 }
 
 .paragraph{
   text-align: left;
+  width: 60%;
+  
 }
 
 .input-field{
   text-align: left;
+}
+
+.icon-style{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.edit-para{
+  color:#1a1a1a;
+  
+}
+
+.modal-button{
+  border-color: #1a1a1a;
+  margin-right: 30px;
+}
+
+.button-div{
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+.edit-input{
+  width:500px;
 }
