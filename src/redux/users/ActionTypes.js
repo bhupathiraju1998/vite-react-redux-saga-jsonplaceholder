@@ -17,8 +17,9 @@ export const fetchUsersFailure = (payload) => ({
 
 
 
-export const postTitleStart = () => ({
+export const postTitleStart = (payload) => ({
     type:ActionConstants.POST_TITLE_START,
+    payload
 })
 
 export const postTitleSuccess = (payload) => ({

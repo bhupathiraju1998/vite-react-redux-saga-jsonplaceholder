@@ -15,10 +15,13 @@ const UserReducer = (state = intialState, action) => {
         isLoading: true,
       };
     case ActionConstants.FETCH_USERS_SUCCESS:
+      const userListFromStateIntial = state.usersList
+      const fetchedUserList = userListFromStateIntial.concat(action.payload )
+      
       return {
         ...state,
         isLoading: false,
-        usersList: action.payload,
+        usersList: fetchedUserList,
       };
     case ActionConstants.FETCH_USERS_FAILURE:
       return {
@@ -33,10 +36,12 @@ const UserReducer = (state = intialState, action) => {
       };
 
     case ActionConstants.POST_TITLE_SUCCESS:
+      const userListFromState = state.usersList
+      const addedUserList = [...userListFromState,action.payload] 
       return {
         ...state,
         isLoading: false,
-        usersList: usersList.push(action.payload),
+        usersList: addedUserList.reverse(),//reverse was used to show the newly added object on top
       };
     case ActionConstants.POST_TITLE_FAILURE:
       return {

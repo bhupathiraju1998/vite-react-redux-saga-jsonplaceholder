@@ -1,6 +1,6 @@
 import {put,call,all,takeEvery,takeLatest, takeLeading} from 'redux-saga/effects'
 import ActionConstants from './ActionConstants'
-import { fetchUsersFailure, fetchUsersSuccess,clearUserMessages, updateTitleSuccess, updateTitleFailure, deleteTitleSuccess, deleteTitleFailure } from './ActionTypes'
+import { fetchUsersFailure, fetchUsersSuccess,clearUserMessages, updateTitleSuccess, updateTitleFailure, deleteTitleSuccess, deleteTitleFailure, postTitleSuccess, postTitleFailure } from './ActionTypes'
 import axios from 'axios'
 
 export function* fetchUsersStartAsync(){
@@ -38,6 +38,16 @@ export function* deleteTitleStartAsync(action){
     }
 }
 
+export function* postTitleStartAsync(action){
+    try {
+        const data = yield axios.post('https://jsonplaceholder.typicode.com/posts',{title:action.payload}).then((res)=>res.data);
+        console.log("post saga",data)
+        yield put(postTitleSuccess(data))
+    } catch (error) {
+        yield put(postTitleFailure(error))
+    }
+}
+
 export function* clearMessagesStartAsync(){
     yield put(clearUserMessages())
 }
@@ -50,6 +60,7 @@ export default function* userSaga () {
     yield takeLatest(ActionConstants.FETCH_USERS_START,fetchUsersStartAsync);
     yield takeLatest(ActionConstants.UPDATE_TITLE_START,updateTitleStartAsync);
     yield takeLatest(ActionConstants.DELETE_TITLE_START,deleteTitleStartAsync);
+    yield takeLatest(ActionConstants.POST_TITLE_START,postTitleStartAsync)
     yield takeLatest([ActionConstants.FETCH_USERS_SUCCESS,
         ActionConstants.FETCH_USERS_FAILURE,
         ActionConstants.UPDATE_TITLE_SUCCESS,

@@ -1,4 +1,4 @@
-import { deleteTitleStart, fetchUsersStart, updateTitleStart } from "./redux/users/ActionTypes";
+import { deleteTitleStart, fetchUsersStart, postTitleStart, updateTitleStart } from "./redux/users/ActionTypes";
 import "./App.css";
 import { connect } from "react-redux";
 import { useState, useEffect } from "react";
@@ -7,7 +7,7 @@ import ReactModal from "react-modal";
 
 ReactModal.setAppElement("#root");
 
-function App({ usersList, fetchUsers ,updateTitle,deleteTitle}) {
+function App({ usersList, fetchUsers ,updateTitle,deleteTitle,postTitle}) {
   const [editName, setEditName] = useState({});
   const [deleteUser, setDeleteUser] = useState({});
   const [modalIsOpenEdit, setModalisOpenEdit] = useState(false);
@@ -23,13 +23,20 @@ function App({ usersList, fetchUsers ,updateTitle,deleteTitle}) {
     setModalisOpenDelete(true);
     setDeleteUser(user);
   };
- console.log("editname",editName)
+ console.log("editname",usersList)
   return (
     <div >
       <p>React - Redux - Saga - JsonPlaceholder</p>
       <button type="button" onClick={() => fetchUsers()}>
         Get Titles from Json placeholder{" "}
       </button>
+      <br/>
+      <div className="add-title-cont">
+      <button type="button" onClick={()=>postTitle("Hello how r u ? 😁")}>
+        Add Title : Hello how r u ? 😁
+      </button>
+      </div>
+      
 
       <ul>
         {usersList
@@ -126,13 +133,13 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchUsersStart());
   },
   updateTitle:(editName)=>{
-    console.log("diaptch",editName)
-    dispatch(updateTitleStart(editName))
+  dispatch(updateTitleStart(editName))
   },
   deleteTitle:(deleteUser)=>{
-    console.log("diaptch",deleteUser)
-
     dispatch(deleteTitleStart(deleteUser))
+  },
+  postTitle:(title)=>{
+    dispatch(postTitleStart(title))
   }
 });
 

@@ -85,3 +85,8 @@
 .edit-input{
   width:500px;
 }
+
+.add-title-cont{
+  display: flex;
+  justify-content: flex-end;
+}
