@@ -19,6 +19,11 @@ function App({ usersList, fetchUsers ,updateTitle,deleteTitle,postTitle}) {
     setEditName(name);
   };
 
+  const callEditClosePopUp = (editedTitle) => {
+    setModalisOpenEdit(false);
+    updateTitle(editedTitle)
+  }
+
   const callDeleteUser = (user) => {
     setModalisOpenDelete(true);
     setDeleteUser(user);
@@ -89,7 +94,7 @@ function App({ usersList, fetchUsers ,updateTitle,deleteTitle,postTitle}) {
                     >
                       Cancel
                     </button>
-                    <button className="modal-button" onClick={()=>updateTitle(editName)} type="button">Submit</button>
+                    <button className="modal-button" onClick={()=>callEditClosePopUp(editName)} type="button">Submit</button>
                   </div>
                 </ReactModal>
                 <span
