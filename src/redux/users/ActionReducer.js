@@ -1,4 +1,6 @@
+import { persistReducer } from "redux-persist";
 import ActionConstants from "./ActionConstants";
+import storage from 'redux-persist/lib/storage';
 
 const intialState = {
   isLoading: false,
@@ -106,4 +108,9 @@ const UserReducer = (state = intialState, action) => {
   }
 };
 
-export default UserReducer;
+const persistConfig = {
+  key:'root',
+  storage
+}
+
+export default persistReducer(persistConfig, UserReducer);
