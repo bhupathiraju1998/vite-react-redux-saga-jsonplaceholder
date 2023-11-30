@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { useState, useEffect } from "react";
 import { Trash2, Pencil } from "lucide-react";
 import ReactModal from "react-modal";
+import { createStructuredSelector } from "reselect";
+import { selectUsersData } from "./redux/users/ActionSelectors";
 
 ReactModal.setAppElement("#root");
 
@@ -155,8 +157,12 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-const mapStateToProps = (state) => ({
-  usersList: state.usersList,
-});
+// const mapStateToProps = (state) => ({
+//   usersList: state.usersList,
+// });
+
+const mapStateToProps = createStructuredSelector({
+  usersList:selectUsersData
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
